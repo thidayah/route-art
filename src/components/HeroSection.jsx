@@ -7,20 +7,20 @@ export default function HeroSection() {
     <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden pt-16">
       {/* Subtle ambient glow */}
       <div className="absolute inset-0 bg-neutral-950">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-lime-400/[0.04] rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-accent/4 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
         {/* Badge */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1.5 mb-8 rounded-full bg-neutral-800/80 border border-white/8 text-neutral-400 text-[11px] font-medium uppercase tracking-widest">
-          <Icon icon="mdi:run" className="w-3.5 h-3.5 text-lime-400" />
+          <Icon icon="mdi:run" className="w-3.5 h-3.5 text-accent" />
           <span>Rute Lari Artistik</span>
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-none tracking-tighter mb-6">
           Lari{" "}
-          <span className="text-lime-400">Dengan</span>
+          <span className="text-accent">Dengan</span>
           <br />
           Gaya
         </h1>
@@ -35,7 +35,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
           <a
             href="#rute"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-[11px] min-h-[44px] bg-lime-400 hover:bg-lime-300 text-neutral-950 font-semibold rounded-xl text-sm transition-colors duration-150 active:scale-95"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-[11px] min-h-[44px] bg-accent hover:bg-accent-hover text-neutral-950 font-semibold rounded-xl text-sm transition-colors duration-150 active:scale-95"
           >
             <Icon icon="mdi:compass-outline" className="w-4 h-4" />
             Jelajahi Rute
@@ -57,7 +57,7 @@ export default function HeroSection() {
             { value: "2.4K", label: "Pelari Aktif" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-lime-400 tabular-nums tracking-tight">
+              <div className="text-2xl sm:text-3xl font-bold text-accent tabular-nums tracking-tight">
                 {stat.value}
               </div>
               <div className="text-[11px] text-neutral-500 mt-1.5 leading-tight uppercase tracking-[0.06em]">

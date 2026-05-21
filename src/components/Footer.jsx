@@ -11,11 +11,11 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-lime-400 rounded-md flex items-center justify-center">
+            <div className="w-6 h-6 bg-accent rounded-md flex items-center justify-center">
               <Icon icon="mdi:map-marker-path" className="w-3.5 h-3.5 text-neutral-950" />
             </div>
             <span className="text-neutral-300 font-semibold text-sm tracking-tight">
-              Route<span className="text-lime-400">Art</span>
+              Route<span className="text-accent">Art</span>
             </span>
           </div>
 
@@ -31,7 +31,7 @@ export default function Footer() {
               href="https://saweria.co"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-lime-400 transition-colors duration-150 flex items-center gap-1.5"
+              className="hover:text-accent transition-colors duration-150 flex items-center gap-1.5"
             >
               <Icon icon="mdi:coffee-outline" className="w-3 h-3" />
               Dukung Kami

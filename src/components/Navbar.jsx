@@ -26,11 +26,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 group">
-            <div className="w-7 h-7 bg-lime-400 rounded-lg flex items-center justify-center group-hover:bg-lime-300 transition-colors duration-150">
+            <div className="w-7 h-7 bg-accent rounded-lg flex items-center justify-center group-hover:bg-accent-hover transition-colors duration-150">
               <Icon icon="mdi:map-marker-path" className="w-4 h-4 text-neutral-950" />
             </div>
             <span className="text-white font-semibold text-sm tracking-tight">
-              Route<span className="text-lime-400">Art</span>
+              Route<span className="text-accent">Art</span>
             </span>
           </a>
 

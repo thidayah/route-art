@@ -23,33 +23,40 @@ RouteArt is built in iterative phases, starting from a static UI and progressive
 
 ---
 
-## Phase 2 — Supabase Integration 🔲 PENDING
+## Phase 2 — Supabase Integration ✅ COMPLETE
 
 **Goal**: Connect the app to a live database and serve real route data.
 
-- [ ] Create Supabase project
-- [ ] Run database migrations (routes, submissions tables)
-- [ ] Create Supabase storage buckets (thumbnails, GPX)
-- [ ] Install and configure `@supabase/supabase-js`
-- [ ] Create `src/lib/supabase.js`
-- [ ] Replace static route data with Supabase query
-- [ ] Connect Submit Route Form to `submissions` table
-- [ ] Add pagination support for route listing
-- [ ] Set up Row Level Security policies
+- [x] Install and configure `@supabase/supabase-js`
+- [x] Create `src/lib/supabase.js` (null-safe, credentials via `.env.local`)
+- [x] Create SQL migration files (`docs/migrations/001`, `002`, `003`)
+- [x] Set up Row Level Security policies (in migrations)
+- [x] Replace static route data with live Supabase query (server-side filter + sort)
+- [x] Connect Submit Route Form to `submissions` table (Supabase insert)
+- [x] Add pagination support (PAGE_SIZE=6, append-on-load-more)
+- [x] Debounced full-text search (`ilike` on name + city)
+- [x] Loading skeleton, error state with retry, empty state
+- [ ] Create Supabase project (manual — user action)
+- [ ] Run database migrations in Supabase SQL Editor (manual — user action)
+- [ ] Create Supabase storage buckets: `route-thumbnails`, `route-gpx` (manual — user action)
+- [ ] Fill in `.env.local` with project URL and anon key (manual — user action)
 
 ---
 
-## Phase 3 — Route Detail Page 🔲 PENDING
+## Phase 3 — Route Detail Page ✅ COMPLETE
 
 **Goal**: Build individual route pages with map preview and details.
 
-- [ ] Create `/routes/[slug]` dynamic route page
-- [ ] Display route metadata (name, city, distance, category)
-- [ ] Embed interactive map with route path (using Leaflet or Mapbox)
-- [ ] Show GPX download button
-- [ ] Add "Start Navigation" link (deep-link to Google Maps / Komoot)
-- [ ] SEO metadata per route page (Open Graph, structured data)
-- [ ] Generate static paths for published routes
+- [x] Create `/routes/[slug]` dynamic route page (Server Component)
+- [x] Display route metadata (name, city, distance, category)
+- [x] Embed interactive Leaflet map with route path (react-leaflet v5, OSM tiles, accent-colored polyline + circle markers)
+- [x] Show GPX download button (when `gpx_file_url` present)
+- [x] Add "Mulai Navigasi" link (deep-link to Google Maps via `start_lat`/`start_lng`)
+- [x] SEO metadata per route page (Open Graph title, description, image)
+- [x] Generate static paths for published routes (`generateStaticParams`)
+- [x] Custom 404 page (`/app/not-found.jsx`)
+- [x] Skeleton loading state (`loading.jsx`)
+- [x] `RouteCard` "Lihat Rute" button links to `/routes/[slug]`
 
 ---
 

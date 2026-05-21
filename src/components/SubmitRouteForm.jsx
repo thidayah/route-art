@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { supabase } from "@/lib/supabase";
 
 const initialForm = {
   name: "",
@@ -51,9 +52,23 @@ export default function SubmitRouteForm() {
     }
 
     setLoading(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    if (!supabase) {
+      setLoading(false);
+      setErrors({ form: "Supabase belum dikonfigurasi. Isi kredensial di .env.local." });
+      return;
+    }
+    const { error: sbError } = await supabase.from("ra_submissions").insert({
+      name: form.name.trim(),
+      location: form.location.trim(),
+      strava_url: form.stravaUrl.trim(),
+    });
     setLoading(false);
+
+    if (sbError) {
+      setErrors({ form: "Gagal mengirim rute. Silakan coba lagi." });
+      return;
+    }
+
     setSubmitted(true);
     setForm(initialForm);
   };
@@ -71,7 +86,7 @@ export default function SubmitRouteForm() {
       <div className="max-w-xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <span className="text-lime-400/80 text-[11px] font-semibold uppercase tracking-widest">
+          <span className="text-accent/80 text-[11px] font-semibold uppercase tracking-widest">
             Kontribusi
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2 mb-3 tracking-tight">
@@ -86,8 +101,8 @@ export default function SubmitRouteForm() {
         {submitted ? (
           /* Success State */
           <div className="text-center py-12 px-6 bg-neutral-900 rounded-2xl border border-white/6">
-            <div className="w-16 h-16 bg-lime-400/15 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Icon icon="mdi:check-circle" className="w-8 h-8 text-lime-400" />
+            <div className="w-16 h-16 bg-accent/15 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Icon icon="mdi:check-circle" className="w-8 h-8 text-accent" />
             </div>
             <h3 className="text-xl font-bold text-white mb-2">
               Rute Berhasil Dikirim!
@@ -116,7 +131,7 @@ export default function SubmitRouteForm() {
                 className="block text-sm font-semibold text-neutral-300 mb-1.5"
               >
                 Nama Rute{" "}
-                <span className="text-lime-400">*</span>
+                <span className="text-accent">*</span>
               </label>
               <input
                 type="text"
@@ -128,11 +143,11 @@ export default function SubmitRouteForm() {
                 className={`w-full px-4 py-3 bg-neutral-800 border ${
                   errors.name
                     ? "border-red-500/60 focus:border-red-500"
-                    : "border-white/10 focus:border-lime-400/50"
+                    : "border-white/10 focus:border-accent/50"
                 } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-colors duration-150 focus:ring-2 ${
                   errors.name
                     ? "focus:ring-red-500/10"
-                    : "focus:ring-lime-400/10"
+                    : "focus:ring-accent/10"
                 }`}
               />
               {errors.name && (
@@ -150,7 +165,7 @@ export default function SubmitRouteForm() {
                 className="block text-sm font-semibold text-neutral-300 mb-1.5"
               >
                 Lokasi / Kota{" "}
-                <span className="text-lime-400">*</span>
+                <span className="text-accent">*</span>
               </label>
               <div className="relative">
                 <Icon
@@ -167,11 +182,11 @@ export default function SubmitRouteForm() {
                   className={`w-full pl-10 pr-4 py-3 bg-neutral-800 border ${
                     errors.location
                       ? "border-red-500/60 focus:border-red-500"
-                      : "border-white/10 focus:border-lime-400/50"
+                      : "border-white/10 focus:border-accent/50"
                   } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-colors duration-150 focus:ring-2 ${
                     errors.location
                       ? "focus:ring-red-500/10"
-                      : "focus:ring-lime-400/10"
+                      : "focus:ring-accent/10"
                   }`}
                 />
               </div>
@@ -190,7 +205,7 @@ export default function SubmitRouteForm() {
                 className="block text-sm font-semibold text-neutral-300 mb-1.5"
               >
                 URL Aktivitas Strava{" "}
-                <span className="text-lime-400">*</span>
+                <span className="text-accent">*</span>
               </label>
               <div className="relative">
                 <Icon
@@ -207,11 +222,11 @@ export default function SubmitRouteForm() {
                   className={`w-full pl-10 pr-4 py-3 bg-neutral-800 border ${
                     errors.stravaUrl
                       ? "border-red-500/60 focus:border-red-500"
-                      : "border-white/10 focus:border-lime-400/50"
+                      : "border-white/10 focus:border-accent/50"
                   } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-colors duration-150 focus:ring-2 ${
                     errors.stravaUrl
                       ? "focus:ring-red-500/10"
-                      : "focus:ring-lime-400/10"
+                      : "focus:ring-accent/10"
                   }`}
                 />
               </div>
@@ -226,12 +241,20 @@ export default function SubmitRouteForm() {
               </p>
             </div>
 
+            {/* Form-level error */}
+            {errors.form && (
+              <p className="text-xs text-red-400 flex items-center gap-1.5 -mb-1">
+                <Icon icon="mdi:alert-circle" className="w-3.5 h-3.5 shrink-0" />
+                {errors.form}
+              </p>
+            )}
+
             {/* Submit button */}
             <div className="pt-2">
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 h-[44px] rounded-xl bg-lime-400 hover:bg-lime-300 disabled:opacity-50 disabled:cursor-not-allowed text-neutral-950 font-semibold text-sm transition-colors duration-150 active:scale-95"
+                className="w-full flex items-center justify-center gap-2 h-[44px] rounded-xl bg-accent hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed text-neutral-950 font-semibold text-sm transition-colors duration-150 active:scale-95"
               >
                 {loading ? (
                   <>
