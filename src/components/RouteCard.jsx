@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 
 const categoryIcons = {
@@ -46,13 +47,17 @@ export default function RouteCard({
     <article className="group flex flex-col bg-neutral-900 rounded-2xl overflow-hidden border border-white/6 hover:border-white/10 transition-colors duration-200">
       {/* Thumbnail */}
       <div
-        className={`relative h-48 bg-linear-to-br ${gradientClass} bg-neutral-800 flex items-center justify-center overflow-hidden`}
+        className={`relative h-48 flex items-center justify-center overflow-hidden ${
+          thumbnailUrl ? "bg-linear-to-br from-neutral-800 to-neutral-950" : `bg-linear-to-br ${gradientClass} bg-neutral-800`
+        }`}
       >
         {thumbnailUrl ? (
-          <img
+          <Image
             src={thumbnailUrl}
             alt={name}
-            className="w-full h-full object-cover"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            // className="object-cover"
           />
         ) : (
           <Icon icon={icon} className={`w-14 h-14 ${iconColorClass} opacity-60`} />

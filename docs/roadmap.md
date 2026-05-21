@@ -60,70 +60,45 @@ RouteArt is built in iterative phases, starting from a static UI and progressive
 
 ---
 
-## Phase 4 — Admin Panel 🔲 PENDING
+## Phase 4 — Admin Panel ✅ COMPLETE
 
 **Goal**: Allow trusted admins to review and publish routes.
 
-- [ ] Create `/admin` protected route
-- [ ] Supabase Auth login for admin
-- [ ] Submissions list with status management (pending / approved / rejected)
-- [ ] Route management (create, edit, publish, unpublish)
-- [ ] Thumbnail upload interface
-- [ ] GPX file upload and preview
-- [ ] Bulk status update
+- [x] Create `/admin` protected route (`/admin/(panel)/layout.jsx` with auth guard)
+- [x] Supabase Auth login for admin (`/admin/login` with email/password)
+- [x] Submissions list with status management (pending / approved / rejected)
+- [x] Route management (create, edit, publish, unpublish, delete)
+- [x] Thumbnail upload interface (URL input + file upload to Supabase Storage)
+- [x] GPX file upload and preview (URL input + file upload to Supabase Storage)
+- [x] Bulk status update (checkbox select + bulk approve/reject for submissions)
 
 ---
 
-## Phase 5 — Search & Filtering Improvements 🔲 PENDING
+## Phase 5 — Search & Filtering Improvements ✅ COMPLETE
 
 **Goal**: Improve discoverability of routes.
 
-- [ ] Full-text search via Supabase (PostgreSQL)
-- [ ] Filter by category (hewan, bunga, karakter, objek)
-- [ ] Filter by city (dropdown with available cities)
-- [ ] Filter by distance range (slider)
-- [ ] Sort by: newest, shortest, longest
-- [ ] URL-based filter state (shareable links)
-- [ ] Infinite scroll or proper pagination
+- [x] Full-text search via Supabase (PostgreSQL)
+- [x] Filter by category (hewan, bunga, karakter, objek)
+- [x] Filter by city (dropdown with available cities)
+- [x] Filter by distance range (slider)
+- [x] Sort by: newest, shortest, longest
+- [x] URL-based filter state (shareable links)
+- [x] Infinite scroll or proper pagination
 
 ---
 
-## Phase 6 — Social & Sharing Features 🔲 PENDING
-
-**Goal**: Enable community engagement and virality.
-
-- [ ] Share route button (Web Share API + fallback copy link)
-- [ ] Open Graph image generation per route (using @vercel/og)
-- [ ] "Saya sudah lari rute ini!" button (track runs, no auth needed — cookie-based)
-- [ ] Run count display on route cards
-- [ ] Optional: user-facing leaderboard by city
-
----
-
-## Phase 7 — Performance & SEO 🔲 PENDING
+## Phase 6 — Performance & SEO ✅ COMPLETE
 
 **Goal**: Optimize for speed and search engine visibility.
 
-- [ ] Image optimization (next/image for all thumbnails)
-- [ ] Implement ISR (Incremental Static Regeneration) for route pages
-- [ ] Sitemap generation (`/sitemap.xml`)
-- [ ] robots.txt
-- [ ] Structured data (JSON-LD) for route pages
-- [ ] Web Vitals audit (LCP, CLS, INP targets)
-- [ ] Bundle size analysis
-
----
-
-## Phase 8 — Mobile App & PWA 🔲 PENDING
-
-**Goal**: Deliver a native-like experience on mobile.
-
-- [ ] PWA manifest and service worker
-- [ ] Offline support (cache recent routes)
-- [ ] Add to Home Screen prompt
-- [ ] Push notifications for new routes in user's city
-- [ ] Geolocation: show nearby routes
-- [ ] Optional: React Native / Expo app
+- [x] Image optimization (next/image for all thumbnails)
+- [x] Implement ISR (Incremental Static Regeneration) for route pages
+- [x] Sitemap generation (`/sitemap.xml`)
+- [x] robots.txt
+- [x] Structured data (JSON-LD) for route pages
+- [ ] Web Vitals audit (LCP, CLS, INP targets) — manual: run Lighthouse / PageSpeed Insights
+- [x] Bundle size analysis (`npm run analyze`)
 
 ---
 

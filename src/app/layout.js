@@ -12,6 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://routeart.id"),
   title: "RouteArt — Lari Dengan Gaya",
   description:
     "Temukan dan ikuti rute lari kreatif berbentuk hewan, bunga, dan karya seni di kotamu. RouteArt mengubah setiap lari menjadi pengalaman artistik.",

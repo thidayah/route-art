@@ -139,7 +139,7 @@ export default function SubmitRouteForm() {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                placeholder="Contoh: Naga Emas Monas"
+                placeholder="Contoh: Kucing Lucu"
                 className={`w-full px-4 py-3 bg-neutral-800 border ${
                   errors.name
                     ? "border-red-500/60 focus:border-red-500"
@@ -178,7 +178,7 @@ export default function SubmitRouteForm() {
                   name="location"
                   value={form.location}
                   onChange={handleChange}
-                  placeholder="Contoh: Jakarta Pusat"
+                  placeholder="Contoh: Bandung"
                   className={`w-full pl-10 pr-4 py-3 bg-neutral-800 border ${
                     errors.location
                       ? "border-red-500/60 focus:border-red-500"

@@ -49,18 +49,14 @@
 
 ## Current Status
 
-**Phase 1 — COMPLETE**
+**Phases 1–6 — COMPLETE**
 
-- Next.js project initialized with App Router, JavaScript, Tailwind v4
-- @iconify/react installed
-- Complete folder structure created
-- Homepage static UI implemented:
-  - Sticky Navbar with logo and coffee donation button
-  - Hero Section with tagline, stats, and CTA buttons
-  - Route List with search, filters, and sample route cards
-  - Submit Route Form with validation and success state
-  - Footer
-- Documentation files created
+- Phase 1: Foundation & Static UI
+- Phase 2: Supabase integration (live data, submissions)
+- Phase 3: Route detail page with Leaflet map
+- Phase 4: Admin panel (auth, route management, file uploads)
+- Phase 5: Search & filtering (full-text, category, city, distance, URL state)
+- Phase 6: Performance & SEO (next/image, ISR, sitemap, robots.txt, JSON-LD, bundle analyzer)
 
 ## User-Facing Language
 
@@ -107,17 +103,37 @@ When working on this project:
 8. **Accent color** — lime-400 (#a3e635) for primary actions, badges, highlights
 
 
-# Route Thumbnail Strategy
+## GPX Processing Pipeline
 
-Route thumbnails are generated automatically from GeoJSON route data.
+When an admin uploads a GPX file, the following pipeline runs automatically in the browser (inside `handleGpxUpload` in `src/components/admin/RouteForm.jsx`):
 
-Flow:
-GPX → GeoJSON → SVG → WEBP preview
+1. **Upload GPX** → `route-gpx/{route_id}/route.gpx` in Supabase Storage
+2. **Parse GPX → GeoJSON** via `src/lib/gpxToGeoJson.js` (`gpxFileToGeoJson`)
+   - Uses `@tmcw/togeojson` + browser `DOMParser` to parse GPX XML
+   - Merges all track segments (LineString + MultiLineString) into one LineString
+   - Strips elevation — stores only `[longitude, latitude]` pairs (GeoJSON standard order)
+   - Returns `null` if fewer than 2 points; pipeline stops without error
+3. **Update GeoJSON field** — sets `form.geojson` textarea with pretty-printed LineString
+4. **Generate SVG thumbnail** via `src/lib/generateThumbnail.js` (`generateRouteSvg`)
+   - Normalizes coordinates to a 400×400 SVG viewport with 28px padding
+   - Uniform scale preserves route shape (uses `Math.min` of x/y scale)
+   - Flips Y-axis: higher latitude → lower SVG y-coordinate
+   - Dark background `#0f0f0f`, lime-400 stroke `#a3e635`, 3.5px stroke-width
+5. **Upload SVG** → `route-thumbnails/{route_id}/thumbnail.svg` with `contentType: image/svg+xml`
+6. **Update thumbnail_url field** — sets `form.thumbnail_url` with public storage URL
 
-Storage:
-- Supabase Storage
-- stored as files, not base64
+Thumbnail auto-generation is skipped if the route already has a `thumbnail_url` set.
 
-Formats:
-- SVG for scalable source asset
-- WEBP for UI preview and sharing
+### Why Routes Previously Failed to Render
+
+`src/components/RouteMap.jsx` reads `geojson.coordinates` to draw a Leaflet `Polyline`. Routes seeded via `docs/migrations/003_seed_routes.sql` have `{"type":"LineString","coordinates":[]}`. The old GPX upload handler only stored the file URL — it never parsed the GPX or populated `geojson`. Since `positions.length > 1` was false, no polyline rendered and the map showed "Peta rute belum tersedia".
+
+### GeoJSON in Leaflet
+
+`src/components/RouteMap.jsx:19–22` converts GeoJSON `[lng, lat]` to Leaflet's `[lat, lng]`:
+```js
+const positions = coords
+  .filter((c) => Array.isArray(c) && c.length >= 2)
+  .map(([lng, lat]) => [lat, lng]);
+```
+The filter accepts 2D and 3D coordinates, so elevation (if present) is safely ignored.
