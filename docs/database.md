@@ -13,12 +13,12 @@
 
 ---
 
-### `routes`
+### `ra_routes`
 
 Stores approved and published running routes.
 
 ```sql
-CREATE TABLE routes (
+CREATE TABLE ra_routes (
   id            UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name          TEXT NOT NULL,
   slug          TEXT NOT NULL UNIQUE,
@@ -37,24 +37,24 @@ CREATE TABLE routes (
 
 **Indexes:**
 ```sql
-CREATE INDEX idx_routes_status ON routes(status);
-CREATE INDEX idx_routes_city ON routes(city);
-CREATE INDEX idx_routes_slug ON routes(slug);
-CREATE INDEX idx_routes_distance ON routes(distance_km);
+CREATE INDEX idx_ra_routes_status ON ra_routes(status);
+CREATE INDEX idx_ra_routes_city ON ra_routes(city);
+CREATE INDEX idx_ra_routes_slug ON ra_routes(slug);
+CREATE INDEX idx_ra_routes_distance ON ra_routes(distance_km);
 ```
 
 **Row Level Security:**
 ```sql
-ALTER TABLE routes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ra_routes ENABLE ROW LEVEL SECURITY;
 
 -- Public can only read published routes
 CREATE POLICY "Public can view published routes"
-  ON routes FOR SELECT
+  ON ra_routes FOR SELECT
   USING (status = 'published');
 
 -- Only authenticated admin can insert/update/delete
 CREATE POLICY "Admin can manage routes"
-  ON routes FOR ALL
+  ON ra_routes FOR ALL
   USING (auth.role() = 'authenticated');
 ```
 
@@ -78,12 +78,12 @@ CREATE POLICY "Admin can manage routes"
 
 ---
 
-### `submissions`
+### `ra_submissions`
 
 Stores user-submitted routes awaiting moderation.
 
 ```sql
-CREATE TABLE submissions (
+CREATE TABLE ra_submissions (
   id          UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name        TEXT NOT NULL,
   location    TEXT NOT NULL,
@@ -96,22 +96,22 @@ CREATE TABLE submissions (
 
 **Indexes:**
 ```sql
-CREATE INDEX idx_submissions_status ON submissions(status);
-CREATE INDEX idx_submissions_created_at ON submissions(created_at DESC);
+CREATE INDEX idx_ra_submissions_status ON ra_submissions(status);
+CREATE INDEX idx_ra_submissions_created_at ON ra_submissions(created_at DESC);
 ```
 
 **Row Level Security:**
 ```sql
-ALTER TABLE submissions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ra_submissions ENABLE ROW LEVEL SECURITY;
 
 -- Anyone can insert (submit a route)
 CREATE POLICY "Anyone can submit routes"
-  ON submissions FOR INSERT
+  ON ra_submissions FOR INSERT
   WITH CHECK (true);
 
 -- Only authenticated admin can read/update/delete
 CREATE POLICY "Admin can manage submissions"
-  ON submissions FOR ALL
+  ON ra_submissions FOR ALL
   USING (auth.role() = 'authenticated');
 ```
 
