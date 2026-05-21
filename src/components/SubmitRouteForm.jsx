@@ -66,18 +66,18 @@ export default function SubmitRouteForm() {
   return (
     <section
       id="kirim-rute"
-      className="py-16 px-4 sm:px-6 bg-neutral-900/50 border-t border-neutral-800"
+      className="py-24 px-4 sm:px-6 border-t border-white/6"
     >
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-lime-400/10 border border-lime-400/20 mb-4">
-            <Icon icon="mdi:map-plus" className="w-7 h-7 text-lime-400" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
+        <div className="text-center mb-12">
+          <span className="text-lime-400/80 text-[11px] font-semibold uppercase tracking-widest">
+            Kontribusi
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2 mb-3 tracking-tight">
             Kirim Rute Kamu
           </h2>
-          <p className="text-neutral-500 text-base max-w-md mx-auto">
+          <p className="text-neutral-500 text-sm max-w-sm mx-auto leading-[1.6]">
             Punya rute lari berbentuk unik? Bagikan ke komunitas RouteArt dan
             ilhami pelari lain!
           </p>
@@ -85,7 +85,7 @@ export default function SubmitRouteForm() {
 
         {submitted ? (
           /* Success State */
-          <div className="text-center py-12 px-6 bg-neutral-900 rounded-2xl border border-neutral-800">
+          <div className="text-center py-12 px-6 bg-neutral-900 rounded-2xl border border-white/6">
             <div className="w-16 h-16 bg-lime-400/15 rounded-full flex items-center justify-center mx-auto mb-4">
               <Icon icon="mdi:check-circle" className="w-8 h-8 text-lime-400" />
             </div>
@@ -98,7 +98,7 @@ export default function SubmitRouteForm() {
             </p>
             <button
               onClick={handleReset}
-              className="px-6 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-semibold border border-neutral-700 hover:border-neutral-600 transition-all duration-200"
+              className="px-6 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white text-sm font-semibold border border-neutral-700 hover:border-neutral-600 transition-colors duration-150"
             >
               Kirim Rute Lain
             </button>
@@ -107,7 +107,7 @@ export default function SubmitRouteForm() {
           /* Form */
           <form
             onSubmit={handleSubmit}
-            className="bg-neutral-900 rounded-2xl border border-neutral-800 p-6 sm:p-8 space-y-5"
+            className="bg-neutral-900 rounded-2xl border border-white/6 p-6 sm:p-8 space-y-5"
           >
             {/* Route name */}
             <div>
@@ -128,8 +128,8 @@ export default function SubmitRouteForm() {
                 className={`w-full px-4 py-3 bg-neutral-800 border ${
                   errors.name
                     ? "border-red-500/60 focus:border-red-500"
-                    : "border-neutral-700 focus:border-lime-400/50"
-                } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-all duration-200 focus:ring-2 ${
+                    : "border-white/10 focus:border-lime-400/50"
+                } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-colors duration-150 focus:ring-2 ${
                   errors.name
                     ? "focus:ring-red-500/10"
                     : "focus:ring-lime-400/10"
@@ -155,7 +155,7 @@ export default function SubmitRouteForm() {
               <div className="relative">
                 <Icon
                   icon="mdi:map-marker"
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-neutral-500"
+                  className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500"
                 />
                 <input
                   type="text"
@@ -167,8 +167,8 @@ export default function SubmitRouteForm() {
                   className={`w-full pl-10 pr-4 py-3 bg-neutral-800 border ${
                     errors.location
                       ? "border-red-500/60 focus:border-red-500"
-                      : "border-neutral-700 focus:border-lime-400/50"
-                  } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-all duration-200 focus:ring-2 ${
+                      : "border-white/10 focus:border-lime-400/50"
+                  } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-colors duration-150 focus:ring-2 ${
                     errors.location
                       ? "focus:ring-red-500/10"
                       : "focus:ring-lime-400/10"
@@ -207,8 +207,8 @@ export default function SubmitRouteForm() {
                   className={`w-full pl-10 pr-4 py-3 bg-neutral-800 border ${
                     errors.stravaUrl
                       ? "border-red-500/60 focus:border-red-500"
-                      : "border-neutral-700 focus:border-lime-400/50"
-                  } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-all duration-200 focus:ring-2 ${
+                      : "border-white/10 focus:border-lime-400/50"
+                  } rounded-xl text-white placeholder-neutral-600 text-sm outline-none transition-colors duration-150 focus:ring-2 ${
                     errors.stravaUrl
                       ? "focus:ring-red-500/10"
                       : "focus:ring-lime-400/10"
@@ -231,7 +231,7 @@ export default function SubmitRouteForm() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-lime-400 hover:bg-lime-300 disabled:opacity-60 disabled:cursor-not-allowed text-neutral-950 font-bold text-base transition-all duration-200 hover:scale-[1.02] active:scale-100 hover:shadow-lg hover:shadow-lime-400/20"
+                className="w-full flex items-center justify-center gap-2 h-[44px] rounded-xl bg-lime-400 hover:bg-lime-300 disabled:opacity-50 disabled:cursor-not-allowed text-neutral-950 font-semibold text-sm transition-colors duration-150 active:scale-95"
               >
                 {loading ? (
                   <>

@@ -105,3 +105,19 @@ When working on this project:
 6. **Mobile-first** — start with mobile layout, enhance for desktop
 7. **Dark theme** — bg-neutral-950 for page, bg-neutral-900 for cards
 8. **Accent color** — lime-400 (#a3e635) for primary actions, badges, highlights
+
+
+# Route Thumbnail Strategy
+
+Route thumbnails are generated automatically from GeoJSON route data.
+
+Flow:
+GPX → GeoJSON → SVG → WEBP preview
+
+Storage:
+- Supabase Storage
+- stored as files, not base64
+
+Formats:
+- SVG for scalable source asset
+- WEBP for UI preview and sharing

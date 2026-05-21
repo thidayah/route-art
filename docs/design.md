@@ -1,162 +1,322 @@
 # RouteArt — Design System
 
+> Last updated: Phase 1 refinement — synchronized with root `DESIGN.md` (Clay.com analysis).
+> `DESIGN.md` = visual direction source · `docs/design.md` = implemented reference
+
+---
+
 ## Design Direction
 
-**Modern · Minimal · Sporty · Playful**
+**Modern · Minimal · Sporty · Dark**
 
-RouteArt's visual identity evokes the energy of running combined with the creativity of art. The design is intentionally dark and focused, letting the content (route cards, maps) take center stage.
+RouteArt uses a dark canvas with a single lime-400 accent, inspired by the typography and spacing discipline of `DESIGN.md`. The Clay.com system's core principles — tight negative letter-spacing on display type, 96px section rhythm, hairline borders, 44px touch targets, and no hover scale — are translated into RouteArt's dark-canvas context.
+
+---
 
 ## Color Palette
 
 ### Backgrounds
 
-| Name              | Hex       | Tailwind           | Usage                              |
-|-------------------|-----------|--------------------|------------------------------------|
-| Page background   | `#0A0A0A` | `bg-neutral-950`   | Main page background               |
-| Card background   | `#171717` | `bg-neutral-900`   | Cards, panels                      |
-| Elevated surface  | `#1C1C1C` | `bg-neutral-800`   | Inputs, buttons, hover states      |
-| Border subtle     | `#262626` | `border-neutral-800` | Card borders, dividers           |
-| Border muted      | `#404040` | `border-neutral-700` | Input borders, interactive borders|
+| Token | Hex | Tailwind | Usage |
+|---|---|---|---|
+| Page background | `#0A0A0A` | `bg-neutral-950` | Main canvas |
+| Card surface | `#171717` | `bg-neutral-900` | Cards, panels, form |
+| Input surface | `#1C1C1C` | `bg-neutral-800` | Form inputs |
 
-### Accent Colors
+### Accent
 
-| Name          | Hex       | Tailwind       | Usage                                    |
-|---------------|-----------|----------------|------------------------------------------|
-| Accent primary | `#A3E635` | `lime-400`     | Primary buttons, badges, highlights      |
-| Accent hover  | `#BEF264` | `lime-300`     | Hover state for primary buttons          |
-| Accent dark   | `#84CC16` | `lime-500`     | Pressed state, secondary accent          |
-| Accent glow   | `#A3E635/10` | `lime-400/10` | Background tints, glow effects          |
+| Token | Hex | Tailwind | Usage |
+|---|---|---|---|
+| Accent primary | `#A3E635` | `lime-400` | Primary buttons, badges, active states |
+| Accent hover | `#BEF264` | `lime-300` | Hover on primary button |
+| Accent dim | `lime-400/80` | — | Section labels (subdued) |
+| Accent glow | `lime-400/10` | — | Focus rings |
 
-### Text Colors
+### Text
 
-| Name        | Hex       | Tailwind            | Usage                            |
-|-------------|-----------|---------------------|----------------------------------|
-| Primary     | `#F5F5F5` | `text-neutral-100`  | Main body text, headings         |
-| Secondary   | `#A3A3A3` | `text-neutral-400`  | Supporting text, descriptions    |
-| Muted       | `#737373` | `text-neutral-500`  | Placeholders, disabled, captions |
-| Disabled    | `#525252` | `text-neutral-600`  | Disabled states, hints           |
+| Token | Hex | Tailwind | Usage |
+|---|---|---|---|
+| Primary | `#F5F5F5` | `text-neutral-100` | Headings, primary body |
+| Secondary | `#A3A3A3` | `text-neutral-400` | Descriptions, ghost button text |
+| Muted | `#737373` | `text-neutral-500` | Captions, section descriptions |
+| Disabled | `#525252` | `text-neutral-600` | Footer text, hints |
 
-### Category Accent Colors (Route Cards)
+### Borders (Hairline System — from DESIGN.md)
 
-| Category  | Icon Color  | Background Gradient                 |
-|-----------|-------------|-------------------------------------|
-| hewan     | `orange-400`| `from-orange-500/20 to-yellow-500/20` |
-| bunga     | `pink-400`  | `from-pink-500/20 to-rose-500/20`   |
-| karakter  | `purple-400`| `from-purple-500/20 to-indigo-500/20` |
-| objek     | `blue-400`  | `from-blue-500/20 to-cyan-500/20`   |
-| default   | `lime-400`  | `from-lime-500/20 to-green-500/20`  |
+All borders use white opacity, not neutral palette values. This creates a consistent "hairline" feel regardless of surface color.
+
+| Usage | Class |
+|---|---|
+| Default card/section border | `border-white/6` |
+| Input default | `border-white/8` |
+| Input hover | `border-white/12` |
+| Interactive hover | `border-white/16` |
+| Dividers | `border-white/4` or `border-white/6` |
+
+---
 
 ## Typography
 
-### Font
+### Font Family
 
-- **Primary**: Geist Sans (Google Fonts via Next.js)
-- **Monospace**: Geist Mono (for code/data display)
+- **Display/Headings**: Geist Sans (loaded via `next/font/google`)
+- **Body / UI**: Geist Sans — same family, different weights
 - **Fallback**: Arial, Helvetica, sans-serif
 
-### Scale
+### Hierarchy (synchronized with DESIGN.md tokens)
 
-| Role         | Size      | Weight | Tailwind                              |
-|--------------|-----------|--------|---------------------------------------|
-| Hero heading | 64–96px   | 900    | `text-7xl sm:text-8xl font-black`    |
-| Section heading | 30–36px | 800   | `text-3xl sm:text-4xl font-black`    |
-| Card title   | 16px      | 700    | `text-base font-bold`                 |
-| Body         | 14–16px   | 400    | `text-sm sm:text-base`               |
-| Caption      | 12px      | 400    | `text-xs`                             |
-| Badge/Label  | 11–12px   | 700    | `text-xs font-bold uppercase tracking-widest` |
+| Role | Size | Weight | Tracking | Tailwind |
+|---|---|---|---|---|
+| Display / Hero h1 | 48–72px | 700 | `-0.05em` | `text-5xl md:text-7xl font-bold tracking-tighter` |
+| Section heading h2 | 30–36px | 700 | `-0.025em` | `text-3xl sm:text-4xl font-bold tracking-tight` |
+| Card title h3 | 14px | 600 | `-0.01em` | `text-sm font-semibold tracking-[-0.01em]` |
+| Body | 14–16px | 400 | 0 | `text-sm sm:text-base` |
+| Description | 14px | 400 | 0 | `text-sm leading-[1.6]` |
+| Caption-uppercase label | 11px | 600 | `+0.1em` | `text-[11px] font-semibold uppercase tracking-widest` |
+| Caption small | 11px | 500 | `+0.06em` | `text-[11px] uppercase tracking-[0.06em]` |
+| Button | 13–14px | 600 | 0 | `text-sm font-semibold` |
+| Nav link | 13–14px | 500 | 0 | `text-[13px] font-medium` |
 
-## Component Patterns
+### Principles (from DESIGN.md)
+
+- Display type uses **font-bold (700)** with **negative letter-spacing** (`tracking-tight` or `tracking-tighter`) — not font-black (900). Weight 900 reads as bombastic on dark backgrounds.
+- Body and UI copy stay at 400–600. Never use font-black for body text.
+- Line height for body text: `leading-[1.6]` (1.55–1.6). For headings: `leading-none` (1.0).
+
+---
+
+## Spacing System
+
+Based on DESIGN.md's 4px base unit and `{spacing.section}` = 96px rhythm.
+
+| Token | Value | Tailwind |
+|---|---|---|
+| xxs | 4px | `p-1` |
+| xs | 8px | `p-2` |
+| sm | 12px | `p-3` |
+| md | 16px | `p-4` |
+| lg | 24px | `p-6` |
+| xl | 32px | `p-8` |
+| xxl | 48px | `p-12` |
+| **section** | **96px** | **`py-24`** |
+
+### Layout Standards
+
+- **Max content width**: `max-w-5xl` (1024px) for all sections
+- **Form max width**: `max-w-xl` (672px)
+- **Section padding**: `py-24 px-4 sm:px-6` (96px vertical)
+- **Section header bottom margin**: `mb-12`
+- **Card grid gap**: `gap-4`
+- **Card internal padding**: `p-4`
+- **Form card padding**: `p-6 sm:p-8`
+
+---
+
+## Border Radius Scale
+
+From DESIGN.md:
+
+| DESIGN.md token | Value | Tailwind | Usage |
+|---|---|---|---|
+| `rounded.xs` | 6px | `rounded` | Small inline elements |
+| `rounded.sm` | 8px | `rounded-lg` | Card action buttons |
+| `rounded.md` | 12px | `rounded-xl` | Buttons, inputs, filter pills active |
+| `rounded.lg` | 16px | `rounded-2xl` | Route cards, form cards |
+| `rounded.xl` | 24px | `rounded-3xl` | (reserved for future feature cards) |
+| `rounded.pill` | 9999px | `rounded-full` | Filter pills, badge pills |
+
+---
+
+## Components
+
+### Navbar
+
+```
+height: h-16 (64px)
+scrolled: bg-neutral-950/95 backdrop-blur-sm border-b border-white/6
+transparent: bg-transparent
+logo: font-semibold text-sm tracking-tight
+nav-link: text-[13px] font-medium
+button: h-[36px] px-3 rounded-lg bg-white/4 border-white/8
+```
 
 ### Buttons
 
-**Primary (Lime)**
+**Primary (Lime) — main CTA**
 ```
-bg-lime-400 hover:bg-lime-300 text-neutral-950 font-bold
-rounded-2xl px-8 py-4
-hover:scale-105 hover:shadow-lg hover:shadow-lime-400/25
-transition-all duration-200
-```
-
-**Secondary (Ghost)**
-```
-bg-transparent hover:bg-neutral-800 text-white font-bold
-rounded-2xl px-8 py-4 border border-neutral-700
-hover:border-neutral-600 hover:scale-105
-transition-all duration-200
+bg-lime-400 hover:bg-lime-300 text-neutral-950 font-semibold text-sm
+h-[44px] px-6 rounded-xl
+active:scale-95 transition-colors duration-150
+NO hover scale, NO hover shadow
 ```
 
-**Tertiary (Neutral)**
+**Secondary (Ghost) — paired with primary**
 ```
-bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white
-rounded-xl px-4 py-3 border border-neutral-800 hover:border-neutral-700
-transition-all duration-200
+bg-transparent hover:bg-white/4 text-neutral-300 hover:text-white font-medium text-sm
+h-[44px] px-6 rounded-xl
+border border-white/10 hover:border-white/16
+active:scale-95 transition-colors duration-150
 ```
 
-### Cards
+**Tertiary (Neutral) — load more, cancel**
+```
+bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white text-sm font-semibold
+px-6 py-2.5 rounded-xl border border-white/8
+active:scale-95 transition-colors duration-150
+```
+
+**Filter Pills — search/filter toggles**
+```
+rounded-full text-[11px] font-medium px-4 py-2
+active:  bg-lime-400 text-neutral-950 border-lime-400
+inactive: bg-transparent text-neutral-500 border-white/8 hover:border-white/16
+```
+
+### Touch Targets (from DESIGN.md)
+
+All interactive elements minimum **44 × 44px** (WCAG AAA). Enforce with `h-[44px]` or `min-h-[44px]` on primary and secondary buttons. Form inputs also `h-[44px]`.
+
+### Cards (Route Cards)
 
 ```
 bg-neutral-900 rounded-2xl overflow-hidden
-border border-neutral-800 hover:border-neutral-700
-hover:shadow-xl hover:shadow-black/30 hover:-translate-y-1
-transition-all duration-300
+border border-white/6 hover:border-white/10
+transition-colors duration-200
+NO shadow on hover (DESIGN.md: no heavy shadows — depth through surface contrast)
+thumbnail: h-48
+content: p-4
 ```
 
-### Inputs
+### Inputs & Form
 
 ```
-bg-neutral-800 border border-neutral-700
+bg-neutral-800 border border-white/10
 focus:border-lime-400/50 focus:ring-2 focus:ring-lime-400/10
-rounded-xl px-4 py-3 text-white placeholder-neutral-600
-outline-none transition-all duration-200
+rounded-xl px-4 py-3 h-[44px] text-white placeholder-neutral-600 text-sm
+outline-none transition-colors duration-150
 ```
 
-### Badges
-
-**Active/Short route:**
+Form card wrapper:
 ```
-bg-lime-400 text-neutral-950 text-xs font-bold px-2 py-1 rounded-lg
+bg-neutral-900 rounded-2xl border border-white/6 p-6 sm:p-8
 ```
 
-**Long route:**
+### Section Labels (Caption-Uppercase)
+
+Directly from DESIGN.md `{typography.caption-uppercase}`: 12px / 600 / 1.5px letter-spacing.
+
 ```
-bg-neutral-950/80 text-lime-400 border border-lime-400/30
-text-xs font-bold px-2 py-1 rounded-lg
+text-[11px] font-semibold uppercase tracking-widest text-lime-400/80
 ```
 
-## Spacing & Layout
+Stat labels (smaller):
+```
+text-[11px] uppercase tracking-[0.06em] text-neutral-500
+```
 
-- **Max content width**: `max-w-5xl` (1024px)
-- **Section padding**: `py-16 px-4 sm:px-6`
-- **Card grid**: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5`
-- **Border radius**: `rounded-2xl` for cards/buttons, `rounded-xl` for inputs/small components
+### Badges (Distance)
 
-## Motion & Animation
+```
+Short (< 10 KM): bg-lime-400 text-neutral-950 text-xs font-bold px-2 py-0.5 rounded-md tracking-wide
+Long (≥ 10 KM):  bg-neutral-950/80 text-lime-400 border border-lime-400/25 backdrop-blur-sm
+                 text-xs font-bold px-2 py-0.5 rounded-md tracking-wide
+```
 
-- **Transition duration**: 200ms for interactions, 300ms for cards
-- **Scale on hover**: `hover:scale-105` for primary buttons, `hover:-translate-y-1` for cards
-- **Easing**: default Tailwind (ease-in-out)
-- **Loading spinner**: `animate-spin` on Iconify loading icon
-- **Bounce**: `animate-bounce` for scroll indicator
-- **Blur**: `backdrop-blur-md` for sticky navbar background
+---
+
+## Elevation & Depth
+
+From DESIGN.md's elevation philosophy: **no heavy shadows**. Depth through surface color contrast and hairline borders only.
+
+| Level | Treatment |
+|---|---|
+| Flat | No border, no shadow — hero, page sections |
+| Hairline | `border-white/6` — cards, form containers |
+| Input border | `border-white/8` default, `border-white/12` hover |
+| Active | `border-white/10` hover on cards |
+| Focus | `focus:ring-2 focus:ring-lime-400/10` — inputs only |
+
+No `shadow-lg`, no `shadow-xl` on cards or buttons (removed per DESIGN.md).
+
+---
+
+## Animation & Motion
+
+| Property | Value |
+|---|---|
+| Default transition | `transition-colors duration-150` |
+| Card transition | `transition-colors duration-200` |
+| Navbar transition | `transition-colors duration-200` |
+| Button press | `active:scale-95` |
+| Scroll indicator | `animate-bounce` |
+| Loading | `animate-spin` |
+| **No hover scale** | Removed per DESIGN.md — only `active:scale-95` for press feedback |
+
+---
 
 ## Icon Library
 
-Using **@iconify/react** with primarily **MDI (Material Design Icons)** set.
+**`@iconify/react` v6** with MDI and Simple Icons.
 
-Key icons used:
-- Navigation: `mdi:map-marker-path`, `mdi:compass-outline`
-- Route: `mdi:route`, `mdi:map-plus`, `mdi:map-marker`
-- UI: `mdi:magnify`, `mdi:close-circle`, `mdi:refresh`, `mdi:chevron-down`
-- Category: `mdi:paw`, `mdi:flower`, `mdi:account-star`, `mdi:shape`
-- Actions: `mdi:send`, `mdi:loading`, `mdi:check-circle`, `mdi:alert-circle`
-- Social: `mdi:coffee-outline`, `simple-icons:strava`
+### Next.js App Router Rule
+
+Every component that imports `{ Icon }` from `@iconify/react` **must** have `"use client"` at the top. The Icon component requires a browser runtime. Without it, icons are silently absent in Server Components.
+
+Currently marked as Client Components:
+- `Navbar.jsx` ✓
+- `HeroSection.jsx` ✓
+- `RouteCard.jsx` ✓
+- `RouteList.jsx` ✓
+- `SubmitRouteForm.jsx` ✓
+- `Footer.jsx` ✓
+
+### Icon Sizing
+
+| Context | Class |
+|---|---|
+| Inline / city label | `w-3 h-3` |
+| Card row / caption | `w-3.5 h-3.5` |
+| Default body | `w-4 h-4` |
+| Emphasis / CTA | `w-5 h-5` |
+| Empty state | `w-10 h-10` |
+
+---
+
+## Responsive Behavior
+
+| Breakpoint | Key changes |
+|---|---|
+| Mobile `< 640px` | Single column cards; stacked CTA buttons; hero h1 `text-5xl`; filter pills scroll horizontally |
+| Tablet `640–1024px` | 2-column cards; side-by-side CTA buttons; hero `text-6xl` |
+| Desktop `≥ 1024px` | 3-column cards; hero `text-7xl`; full nav |
+
+---
 
 ## UI Principles
 
-1. **Dark-only** — no light mode toggle; the brand is dark
-2. **Mobile-first** — design for 375px width minimum, thumb reachability
-3. **Generous touch targets** — minimum 44px height for interactive elements
-4. **Hierarchy through weight** — use font weight variation over font size variation
-5. **Accent sparingly** — lime-400 highlights the most important action per screen
-6. **Rounded consistently** — `rounded-2xl` for large containers, `rounded-xl` for smaller
-7. **Subtle depth** — achieve depth through border, shadow, and background color variation
+1. **Dark-only** — cream/light themes are not in scope for RouteArt
+2. **Mobile-first** — 375px minimum viewport, thumb reachability
+3. **44px touch targets** — enforced on all interactive elements (from DESIGN.md)
+4. **Tight display tracking** — negative letter-spacing on h1/h2 (from DESIGN.md)
+5. **No hover scale on buttons** — press-only `active:scale-95` (from DESIGN.md)
+6. **No hover shadows on cards** — hairline border change only (from DESIGN.md)
+7. **96px section rhythm** — `py-24` between all major sections (from DESIGN.md)
+8. **Single accent** — lime-400 used only for the most important action per screen
+9. **Caption-uppercase labels** — all section labels follow 11px / semibold / uppercase / tracking-widest pattern
+10. **Hairline borders** — `border-white/N` not `border-neutral-N` for consistent depth across surfaces
+
+
+# Route Thumbnail Strategy
+
+Route thumbnails are generated automatically from GeoJSON route data.
+
+Flow:
+GPX → GeoJSON → SVG → WEBP preview
+
+Storage:
+- Supabase Storage
+- stored as files, not base64
+
+Formats:
+- SVG for scalable source asset
+- WEBP for UI preview and sharing
