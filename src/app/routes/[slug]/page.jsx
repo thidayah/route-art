@@ -84,7 +84,6 @@ export default async function RouteDetailPage({ params }) {
       : null;
 
   const jsonLd = {
-
     "@context": "https://schema.org",
     "@type": "Article",
     headline: route.name,
