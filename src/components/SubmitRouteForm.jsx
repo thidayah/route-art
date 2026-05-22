@@ -93,7 +93,7 @@ export default function SubmitRouteForm() {
             Kirim Rute Kamu
           </h2>
           <p className="text-neutral-500 text-sm max-w-sm mx-auto leading-[1.6]">
-            Punya rute lari berbentuk unik? Bagikan ke komunitas RouteArt dan
+            Punya rute lari berbentuk unik? Bagikan ke RouteArt dan
             ilhami pelari lain!
           </p>
         </div>

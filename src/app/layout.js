@@ -13,17 +13,22 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://routeart.id"),
-  title: "RouteArt — Lari Dengan Gaya",
+  title: "RouteArt — Berlari Dengan Rute Unik",
   description:
     "Temukan dan ikuti rute lari kreatif berbentuk hewan, bunga, dan karya seni di kotamu. RouteArt mengubah setiap lari menjadi pengalaman artistik.",
   keywords: ["lari", "running route", "rute lari", "seni", "RouteArt"],
   authors: [{ name: "RouteArt" }],
   openGraph: {
-    title: "RouteArt — Lari Dengan Gaya",
+    title: "RouteArt — Berlari Dengan Rute Unik",
     description:
       "Temukan dan ikuti rute lari kreatif berbentuk hewan, bunga, dan karya seni di kotamu.",
     type: "website",
     locale: "id_ID",
+    images: [{ url: "/thumbnail.png", width: 1200, height: 630, alt: "RouteArt" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/thumbnail.png"],
   },
 };
 

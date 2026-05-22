@@ -21,13 +21,13 @@ export default function Footer() {
 
           {/* Links */}
           <nav className="flex items-center gap-6 text-[11px] text-neutral-600 uppercase tracking-widest">
-            <a href="#rute" className="hover:text-neutral-300 transition-colors duration-150">
+            <a href="/#rute" className="hover:text-neutral-300 transition-colors duration-150">
               Rute
             </a>
-            <a href="#kirim-rute" className="hover:text-neutral-300 transition-colors duration-150">
+            <a href="/#kirim-rute" className="hover:text-neutral-300 transition-colors duration-150">
               Kirim Rute
             </a>
-            <a
+            {/* <a
               href="https://saweria.co"
               target="_blank"
               rel="noopener noreferrer"
@@ -35,15 +35,15 @@ export default function Footer() {
             >
               <Icon icon="mdi:coffee-outline" className="w-3 h-3" />
               Dukung Kami
-            </a>
+            </a> */}
           </nav>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-white/4 flex flex-col sm:flex-row items-center justify-between gap-2 text-neutral-700 text-[11px]">
+        <div className="mt-8 pt-6 border-t border-white/4 flex flex-col sm:flex-row items-center justify-between gap-2 text-neutral-600 text-[11px]">
           <p>&copy; {year} RouteArt. Untuk para pelari kreatif Indonesia.</p>
           <div className="flex items-center gap-1">
             <span>Dibuat dengan</span>
-            <Icon icon="mdi:heart" className="w-3 h-3 text-red-500/60" />
+            <Icon icon="mdi:coffee" className="w-3 h-3 text-neutral-200" />
             <span>di Indonesia</span>
           </div>
         </div>

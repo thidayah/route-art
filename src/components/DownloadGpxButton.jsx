@@ -36,7 +36,7 @@ export default function DownloadGpxButton({ url, name, distance }) {
     <button
       onClick={handleDownload}
       disabled={downloading}
-      className="flex-1 flex items-center justify-center gap-2 h-[44px] rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-sm border border-white/8 hover:border-white/12 transition-colors duration-150 active:scale-95 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+      className="flex-1 flex items-center justify-center gap-2 py-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-sm border border-white/8 hover:border-white/12 transition-colors duration-150 active:scale-95 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
     >
       <Icon
         icon={downloading ? "mdi:loading" : "mdi:download"}

@@ -139,15 +139,17 @@ export default async function RouteDetailPage({ params }) {
                 <Icon icon="mdi:map-marker" className="w-4 h-4 shrink-0" />
                 {route.city}
               </div>
-              <a
-                href={route.source_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-accent hover:underline"
-              >
-                <Icon icon="mdi:open-in-new" className="w-4 h-4" />
-                Sumber
-              </a>
+              {route.source_url && (
+                <a
+                  href={route.source_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-accent hover:underline"
+                >
+                  <Icon icon="mdi:open-in-new" className="w-4 h-4" />
+                  Sumber
+                </a>
+              )}
             </div>
 
 
@@ -180,19 +182,19 @@ export default async function RouteDetailPage({ params }) {
             </div>
 
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               {mapsUrl ? (
                 <a
                   href={mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 h-[44px] rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-sm border border-white/8 hover:border-white/12 transition-colors duration-150 active:scale-95"
+                  className="flex-1 flex items-center justify-center gap-2 py-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-sm border border-white/8 hover:border-white/12 transition-colors duration-150 active:scale-95"
                 >
                   <Icon icon="mdi:map-marker-radius" className="w-4 h-4" />
                   Ke Titik Mulai
                 </a>
               ) : (
-                <div className="flex-1 flex items-center justify-center gap-2 h-[44px] rounded-xl bg-neutral-800 text-neutral-600 text-sm border border-white/4 cursor-not-allowed">
+                <div className="flex-1 flex items-center justify-center gap-2 py-4 rounded-xl bg-neutral-800 text-neutral-600 text-sm border border-white/4 cursor-not-allowed">
                   <Icon icon="mdi:map-marker-off-outline" className="w-4 h-4" />
                   Koordinat Belum Tersedia
                 </div>

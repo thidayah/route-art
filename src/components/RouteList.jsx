@@ -266,10 +266,7 @@ export default function RouteList() {
     setDistanceRange([0, MAX_KM]);
     setDebouncedRange([0, MAX_KM]);
     setSort("newest");
-  }
-
-  console.log({error});
-  
+  }  
 
   return (
     <section id="rute" className="py-24 px-4 sm:px-6 bg-neutral-950">
@@ -282,7 +279,7 @@ export default function RouteList() {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2 mb-3 tracking-tight">
             Rute Pilihan
           </h2>
-          <p className="text-neutral-500 text-sm max-w-md leading-[1.6]">
+          <p className="text-neutral-500 text-sm leading-[1.6]">
             Rute lari kreatif berbentuk karya seni yang tersebar di berbagai
             kota di Indonesia.
           </p>
