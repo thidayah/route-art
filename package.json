@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@iconify/react": "^6.0.2",
     "@supabase/supabase-js": "^2.106.1",
+    "@tmcw/togeojson": "^7.1.2",
     "leaflet": "^1.9.4",
     "next": "16.2.6",
     "react": "19.2.4",
@@ -18,6 +20,7 @@
     "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.2.6",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",

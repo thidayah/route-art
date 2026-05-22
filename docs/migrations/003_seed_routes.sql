@@ -2,7 +2,7 @@
 -- Run this after 001_create_routes.sql
 
 INSERT INTO ra_routes (name, slug, city, distance_km, category, status, geojson) VALUES
-  ('Naga Emas Monas',          'naga-emas-monas',          'Jakarta Pusat',   8.2,  'hewan',    'published', '{"type":"LineString","coordinates":[]}'),
+  ('Kucing Lucu',              'kucing-lucu',          'Jakarta Pusat',   8.2,  'hewan',    'published', '{"type":"LineString","coordinates":[]}'),
   ('Kupu-Kupu Sudirman',       'kupu-kupu-sudirman',       'Jakarta Selatan', 12.7, 'hewan',    'published', '{"type":"LineString","coordinates":[]}'),
   ('Bunga Tulip Senayan',      'bunga-tulip-senayan',      'Jakarta Selatan', 5.4,  'bunga',    'published', '{"type":"LineString","coordinates":[]}'),
   ('Ikan Layar Pantai Ancol',  'ikan-layar-pantai-ancol',  'Jakarta Utara',   15.1, 'hewan',    'published', '{"type":"LineString","coordinates":[]}'),

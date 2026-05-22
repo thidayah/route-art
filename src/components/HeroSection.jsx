@@ -19,10 +19,10 @@ export default function HeroSection() {
 
         {/* Headline */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-none tracking-tighter mb-6">
-          Lari{" "}
+          Berlari{" "}
           <span className="text-accent">Dengan</span>
           <br />
-          Gaya
+          Rute Unik
         </h1>
 
         {/* Description */}

@@ -24,6 +24,7 @@ CREATE TABLE ra_routes (
   slug          TEXT NOT NULL UNIQUE,
   city          TEXT NOT NULL,
   distance_km   FLOAT NOT NULL,
+  source_url    TEXT,
   thumbnail_url TEXT,
   gpx_file_url  TEXT,
   geojson       JSONB,
@@ -67,6 +68,7 @@ CREATE POLICY "Admin can manage routes"
 | slug           | text        | No       | URL slug (e.g. "kucing-tidur-senayan")    |
 | city           | text        | No       | City name (e.g. "Jakarta Selatan")        |
 | distance_km    | float       | No       | Route distance in kilometers              |
+| source_url     | text        | Yes      | Credit link (e.g. Strava activity URL)    |
 | thumbnail_url  | text        | Yes      | Public URL to thumbnail image             |
 | gpx_file_url   | text        | Yes      | Public URL to GPX file                    |
 | geojson        | jsonb       | Yes      | GeoJSON LineString of the route path      |
@@ -135,8 +137,12 @@ CREATE POLICY "Admin can manage submissions"
 
 - **Access**: Public
 - **Purpose**: Store processed thumbnail images for routes
-- **Format**: WebP, max 800x600px
-- **Path pattern**: `{route_id}/thumbnail.webp`
+- **Formats**:
+  - `thumbnail.svg` — auto-generated from GPX via `src/lib/generateThumbnail.js`
+  - `thumbnail.{ext}` — manually uploaded by admin (any image format)
+- **Path patterns**:
+  - `{route_id}/thumbnail.svg` — GPX pipeline output
+  - `{route_id}/thumbnail.{ext}` — manual upload
 
 ### `route-gpx`
 

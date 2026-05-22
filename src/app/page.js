@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import RouteList from "@/components/RouteList";
@@ -9,7 +10,9 @@ export default function HomePage() {
     <main className="flex flex-col min-h-screen bg-neutral-950">
       <Navbar />
       <HeroSection />
-      <RouteList />
+      <Suspense fallback={<div className="py-24 bg-neutral-950" />}>
+        <RouteList />
+      </Suspense>
       <SubmitRouteForm />
       <Footer />
     </main>

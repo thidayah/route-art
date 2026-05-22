@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS ra_routes (
   start_lat     FLOAT,
   start_lng     FLOAT,
   category      TEXT DEFAULT 'default',
+  source_url    TEXT,
   status        TEXT DEFAULT 'draft',
   created_at    TIMESTAMPTZ DEFAULT NOW()
 );
