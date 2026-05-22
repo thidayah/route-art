@@ -69,7 +69,7 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-600 animate-bounce">
+      <div className="absolute -bottom-2 lg:bottom-8 left-1/2 -translate-x-1/2 text-neutral-600 animate-bounce">
         <Icon icon="mdi:chevron-down" className="w-5 h-5" />
       </div>
     </section>

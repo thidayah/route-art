@@ -50,16 +50,16 @@ function GpsTracker() {
   }, [map]);
 
   // Disable follow when user manually pans the map
-  useEffect(() => {
-    const onMoveStart = (e) => {
-      if (e.originalEvent) {
-        followRef.current = false;
-        document.dispatchEvent(new CustomEvent("route:following-lost"));
-      }
-    };
-    map.on("movestart", onMoveStart);
-    return () => map.off("movestart", onMoveStart);
-  }, [map]);
+  // useEffect(() => {
+  //   const onMoveStart = (e) => {
+  //     if (e.originalEvent) {
+  //       followRef.current = false;
+  //       document.dispatchEvent(new CustomEvent("route:following-lost"));
+  //     }
+  //   };
+  //   map.on("movestart", onMoveStart);
+  //   return () => map.off("movestart", onMoveStart);
+  // }, [map]);
 
   useEffect(() => {
     if (!navigator.geolocation) return;
@@ -86,13 +86,13 @@ function GpsTracker() {
     <>
       <CircleMarker
         center={position}
-        radius={14}
-        pathOptions={{ color: "#3b82f6", fillColor: "#3b82f6", fillOpacity: 0.15, weight: 2 }}
+        radius={12}
+        pathOptions={{ color: "#ffffff", fillColor: "#006aff", fillOpacity: 1, weight: 4 }}
       />
       <CircleMarker
         center={position}
-        radius={7}
-        pathOptions={{ color: "#ffffff", fillColor: "#3b82f6", fillOpacity: 1, weight: 2 }}
+        radius={24}
+        pathOptions={{ color: "#006aff", fillColor: "#006aff", fillOpacity: 0.25, weight: 0 }}
       />
     </>
   );

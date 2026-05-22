@@ -15,6 +15,7 @@ const nextConfig = {
       },
     ],
   },
+  allowedDevOrigins: ['192.168.101.8'],
 };
 
 export default withBundleAnalyzer(nextConfig);
