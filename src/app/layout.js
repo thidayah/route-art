@@ -44,6 +44,9 @@ export default function RootLayout({ children }) {
       lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Route Art" />
+      </head>
       <body className="min-h-full flex flex-col bg-neutral-950 text-neutral-100">
         {children}
       </body>
