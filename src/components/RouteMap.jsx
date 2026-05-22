@@ -61,24 +61,24 @@ function GpsTracker() {
   //   return () => map.off("movestart", onMoveStart);
   // }, [map]);
 
-  useEffect(() => {
-    if (!navigator.geolocation) return;
-    const id = navigator.geolocation.watchPosition(
-      ({ coords }) => {
-        // Skip inaccurate readings to prevent jumping
-        if (coords.accuracy > 100) return;
-        const latlng = [coords.latitude, coords.longitude];
-        latestPosRef.current = latlng;
-        setPosition(latlng);
-        if (followRef.current) {
-          map.flyTo(latlng, Math.max(map.getZoom(), 16), { duration: 1.2 });
-        }
-      },
-      null,
-      { enableHighAccuracy: true, maximumAge: 2000 }
-    );
-    return () => navigator.geolocation.clearWatch(id);
-  }, [map]);
+  // useEffect(() => {
+  //   if (!navigator.geolocation) return;
+  //   const id = navigator.geolocation.watchPosition(
+  //     ({ coords }) => {
+  //       // Skip inaccurate readings to prevent jumping
+  //       if (coords.accuracy > 100) return;
+  //       const latlng = [coords.latitude, coords.longitude];
+  //       latestPosRef.current = latlng;
+  //       setPosition(latlng);
+  //       if (followRef.current) {
+  //         map.flyTo(latlng, Math.max(map.getZoom(), 16), { duration: 1.2 });
+  //       }
+  //     },
+  //     null,
+  //     { enableHighAccuracy: true, maximumAge: 2000 }
+  //   );
+  //   return () => navigator.geolocation.clearWatch(id);
+  // }, [map]);
 
   if (!position) return null;
 
