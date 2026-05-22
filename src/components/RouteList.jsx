@@ -317,7 +317,7 @@ export default function RouteList() {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value)}
-              className="h-[44px] pl-9 pr-8 bg-neutral-900 border border-white/8 hover:border-white/12 rounded-xl text-white text-sm outline-none appearance-none cursor-pointer transition-colors duration-150 focus:border-accent/40"
+              className="h-[44px] w-full pl-9 pr-8 bg-neutral-900 border border-white/8 hover:border-white/12 rounded-xl text-white text-sm outline-none appearance-none cursor-pointer transition-colors duration-150 focus:border-accent/40"
             >
               {SORT_OPTIONS.map((o) => (
                 <option key={o.id} value={o.id}>
