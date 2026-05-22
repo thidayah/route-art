@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -10,7 +10,6 @@ import {
   ZoomControl,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { Icon } from "@iconify/react";
 
 function FitBounds({ positions }) {
   const map = useMap();
@@ -35,13 +34,16 @@ function MapResizer() {
 function GpsLocation() {
   const map = useMap();
   const [position, setPosition] = useState(null);
+  const positionRef = useRef(null);
 
   useEffect(() => {
     if (!navigator.geolocation) return;
     const id = navigator.geolocation.watchPosition(
       ({ coords }) => {
         if (coords.accuracy > 100) return;
-        setPosition([coords.latitude, coords.longitude]);
+        const pos = [coords.latitude, coords.longitude];
+        positionRef.current = pos;
+        setPosition(pos);
       },
       null,
       { enableHighAccuracy: true, maximumAge: 2000 }
@@ -49,11 +51,14 @@ function GpsLocation() {
     return () => navigator.geolocation.clearWatch(id);
   }, []);
 
-  function handleLocate() {
-    if (position) {
-      map.flyTo(position, Math.max(map.getZoom(), 15), { duration: 0 });
-    }
-  }
+  useEffect(() => {
+    const handler = () => {
+      const pos = positionRef.current;
+      if (pos) map.flyTo(pos, Math.max(map.getZoom(), 15), { duration: 0 });
+    };
+    document.addEventListener("route:gps-recenter", handler);
+    return () => document.removeEventListener("route:gps-recenter", handler);
+  }, [map]);
 
   return (
     <>
@@ -71,15 +76,6 @@ function GpsLocation() {
           />
         </>
       )}
-      <div className="absolute top-4 left-43 z-1000">
-        <button
-          onClick={handleLocate}
-          disabled={!position}
-          className="flex items-center px-3 py-2.5 rounded-xl bg-neutral-950/90 hover:bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white transition-colors duration-150 backdrop-blur-sm disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          <Icon icon="mdi:crosshairs-gps" className="w-4 h-4" />
-        </button>
-      </div>
     </>
   );
 }
