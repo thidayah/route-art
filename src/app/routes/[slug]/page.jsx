@@ -154,7 +154,7 @@ export default async function RouteDetailPage({ params }) {
 
 
             {/* Stats row */}
-            <div className="grid grid-cols-3 gap-4 mb-8 p-4 bg-neutral-800/50 rounded-xl border border-white/4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8 p-4 bg-neutral-800/50 rounded-xl border border-white/4">
               <div className="text-center">
                 <div className="text-xl font-bold text-accent tabular-nums">
                   {route.distance_km}
@@ -163,7 +163,7 @@ export default async function RouteDetailPage({ params }) {
                   Kilometer
                 </div>
               </div>
-              <div className="text-center border-x border-white/6">
+              <div className="hidden md:block text-center border-x border-white/6">
                 <div className="text-xl font-bold text-white capitalize">
                   {label}
                 </div>

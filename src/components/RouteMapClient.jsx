@@ -63,7 +63,7 @@ export default function RouteMapClient({ geojson, startLat, startLng }) {
 
       {/* Back button — hidden in nav mode */}
       {!navMode && (
-        <div className="absolute top-4 left-4 z-[1000]">
+        <div className="absolute top-4 left-4 z-1000">
           <a
             href="/"
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-950/90 hover:bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white text-sm font-medium transition-colors duration-150 backdrop-blur-sm"
@@ -76,7 +76,7 @@ export default function RouteMapClient({ geojson, startLat, startLng }) {
 
       {/* Exit navigation */}
       {navMode && (
-        <div className="absolute top-4 left-4 z-[1000]">
+        <div className="absolute top-4 left-4 z-1000">
           <button
             onClick={exitNavigation}
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-950/90 hover:bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white text-sm font-medium transition-colors duration-150 backdrop-blur-sm"
