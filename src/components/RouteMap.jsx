@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -34,17 +34,48 @@ function MapResizer() {
 function GpsTracker() {
   const map = useMap();
   const [position, setPosition] = useState(null);
+  const followRef = useRef(true);
+  const latestPosRef = useRef(null);
+
+  // Re-center when triggered from outside
+  useEffect(() => {
+    const handler = () => {
+      followRef.current = true;
+      if (latestPosRef.current) {
+        map.flyTo(latestPosRef.current, Math.max(map.getZoom(), 16), { duration: 1.0 });
+      }
+    };
+    document.addEventListener("route:gps-recenter", handler);
+    return () => document.removeEventListener("route:gps-recenter", handler);
+  }, [map]);
+
+  // Disable follow when user manually pans the map
+  useEffect(() => {
+    const onMoveStart = (e) => {
+      if (e.originalEvent) {
+        followRef.current = false;
+        document.dispatchEvent(new CustomEvent("route:following-lost"));
+      }
+    };
+    map.on("movestart", onMoveStart);
+    return () => map.off("movestart", onMoveStart);
+  }, [map]);
 
   useEffect(() => {
     if (!navigator.geolocation) return;
     const id = navigator.geolocation.watchPosition(
       ({ coords }) => {
+        // Skip inaccurate readings to prevent jumping
+        if (coords.accuracy > 100) return;
         const latlng = [coords.latitude, coords.longitude];
+        latestPosRef.current = latlng;
         setPosition(latlng);
-        map.flyTo(latlng, Math.max(map.getZoom(), 16), { duration: 1.2 });
+        if (followRef.current) {
+          map.flyTo(latlng, Math.max(map.getZoom(), 16), { duration: 1.2 });
+        }
       },
       null,
-      { enableHighAccuracy: true, maximumAge: 5000 }
+      { enableHighAccuracy: true, maximumAge: 2000 }
     );
     return () => navigator.geolocation.clearWatch(id);
   }, [map]);

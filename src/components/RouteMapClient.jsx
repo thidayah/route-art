@@ -15,6 +15,7 @@ const RouteMap = dynamic(() => import("./RouteMap"), {
 
 export default function RouteMapClient({ geojson, startLat, startLng }) {
   const [navMode, setNavMode] = useState(false);
+  const [gpsFollowing, setGpsFollowing] = useState(true);
   const hasPath = geojson?.coordinates?.length > 1;
 
   useEffect(() => {
@@ -25,6 +26,18 @@ export default function RouteMapClient({ geojson, startLat, startLng }) {
     }
     return () => { document.body.style.overflow = ""; };
   }, [navMode]);
+
+  // Reset following state each time nav mode starts
+  useEffect(() => {
+    if (navMode) setGpsFollowing(true);
+  }, [navMode]);
+
+  // Listen for GpsTracker signaling the user panned away
+  useEffect(() => {
+    const handler = () => setGpsFollowing(false);
+    document.addEventListener("route:following-lost", handler);
+    return () => document.removeEventListener("route:following-lost", handler);
+  }, []);
 
   useEffect(() => {
     const handler = () => {
@@ -38,6 +51,11 @@ export default function RouteMapClient({ geojson, startLat, startLng }) {
   function exitNavigation() {
     setNavMode(false);
     setTimeout(() => document.dispatchEvent(new CustomEvent("route:map-resize")), 100);
+  }
+
+  function handleRecenter() {
+    setGpsFollowing(true);
+    document.dispatchEvent(new CustomEvent("route:gps-recenter"));
   }
 
   return (
@@ -87,6 +105,19 @@ export default function RouteMapClient({ geojson, startLat, startLng }) {
           >
             <Icon icon="mdi:close" className="w-4 h-4" />
             Keluar Navigasi
+          </button>
+        </div>
+      )}
+
+      {/* Re-center button — shown when user panned away from GPS */}
+      {navMode && !gpsFollowing && (
+        <div className="absolute bottom-6 right-4 z-1000">
+          <button
+            onClick={handleRecenter}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-accent hover:bg-accent-hover text-neutral-950 text-sm font-semibold transition-colors duration-150 shadow-lg active:scale-95"
+          >
+            <Icon icon="mdi:crosshairs-gps" className="w-4 h-4" />
+            Kembali ke GPS
           </button>
         </div>
       )}
