@@ -21,12 +21,12 @@ function FitBounds({ positions }) {
   return null;
 }
 
-function FullscreenResizer() {
+function MapResizer() {
   const map = useMap();
   useEffect(() => {
-    const handler = () => setTimeout(() => map.invalidateSize(), 100);
-    document.addEventListener("fullscreenchange", handler);
-    return () => document.removeEventListener("fullscreenchange", handler);
+    const handler = () => map.invalidateSize();
+    document.addEventListener("route:map-resize", handler);
+    return () => document.removeEventListener("route:map-resize", handler);
   }, [map]);
   return null;
 }
@@ -87,7 +87,7 @@ export default function RouteMap({ geojson, startLat, startLng, navigationMode =
       scrollWheelZoom={true}
     >
       <ZoomControl position="topright" />
-      <FullscreenResizer />
+      <MapResizer />
       <TileLayer
         attribution='&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>'
         url={`https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_MAPTILER_KEY}`}
