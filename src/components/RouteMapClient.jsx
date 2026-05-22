@@ -111,17 +111,17 @@ export default function RouteMapClient({ geojson, startLat, startLng }) {
 
       {/* Re-center button — shown when user panned away from GPS */}
       {/* {navMode && !gpsFollowing && ( */}
-      {navMode && (
+      {/* {navMode && (
         <div className="absolute top-4 left-43 z-1000">
           <button
             onClick={handleRecenter}
             className="flex items-center gap-1.5 px-3 py-2.5 rounded-xl bg-neutral-950/90 hover:bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white text-sm font-medium transition-colors duration-150 backdrop-blur-sm"
           >
             <Icon icon="mdi:crosshairs-gps" className="w-4 h-4" />
-            {/* Kembali ke GPS */}
+            Kembali ke GPS
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
