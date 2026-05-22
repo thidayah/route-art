@@ -83,7 +83,7 @@ export default function RouteMapClient({ geojson, startLat, startLng }) {
         <div className="absolute top-4 left-4 z-1000">
           <button
             onClick={exitNavigation}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-950/90 hover:bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white text-sm font-medium transition-colors duration-150 backdrop-blur-sm"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-neutral-950/90 hover:bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white text-sm font-medium transition-colors duration-150 backdrop-blur-sm cursor-pointer"
           >
             <Icon icon="mdi:close" className="w-4 h-4" />
             Keluar Navigasi
@@ -96,7 +96,7 @@ export default function RouteMapClient({ geojson, startLat, startLng }) {
         <div className="absolute top-4 left-43 z-1000">
           <button
             onClick={() => document.dispatchEvent(new CustomEvent("route:gps-recenter"))}
-            className="flex items-center px-3 py-2.5 rounded-xl bg-neutral-950/90 hover:bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white transition-colors duration-150 backdrop-blur-sm"
+            className="flex items-center px-3 py-2.5 rounded-xl bg-neutral-950/90 hover:bg-neutral-900 border border-white/10 text-neutral-300 hover:text-white transition-colors duration-150 backdrop-blur-sm cursor-pointer"
           >
             <Icon icon="mdi:crosshairs-gps" className="w-4 h-4" />
           </button>
