@@ -7,6 +7,7 @@ import Image from "next/image";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [qrisOpen, setQrisOpen] = useState(false);
+  // const [qrisLoaded, setQrisLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,7 @@ export default function Navbar() {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      // setQrisLoaded(false);
     }
     return () => { document.body.style.overflow = ""; };
   }, [qrisOpen]);
@@ -84,11 +86,15 @@ export default function Navbar() {
               <p className="text-neutral-500 text-sm mt-1">Scan QRIS untuk mendukung kami</p>
             </div>
 
-            <div className="rounded-xl overflow-hidden bg-white">
+            <div className="rounded-2xl flex overflow-hidden bg-neutral-200 relative">
+              {/* {qrisLoaded && ( */}
+                <div className=" w-full h-100 bg-neutral-800 animate-pulse rounded-sm " />
+              {/* )} */}
               <img
                 src="/qris.png"
                 alt="QRIS Runminders"
-                className=" object-cover"
+                className="object-cover"
+                // onLoad={() => setQrisLoaded(true)}
               />
             </div>
 
