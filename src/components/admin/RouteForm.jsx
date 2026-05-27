@@ -486,7 +486,7 @@ export default function RouteForm({ initialData = null, prefill = null }) {
         <button
           type="submit"
           disabled={saving || uploadingThumb || uploadingGpx}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-neutral-950 font-semibold text-sm transition-colors duration-150 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-neutral-950 font-semibold text-sm transition-colors duration-150 active:scale-95 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed "
         >
           {saving ? (
             <div className="w-4 h-4 rounded-full border-2 border-neutral-950/40 border-t-neutral-950 animate-spin" />
@@ -501,7 +501,7 @@ export default function RouteForm({ initialData = null, prefill = null }) {
         <button
           type="button"
           onClick={() => router.back()}
-          className="px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white font-medium text-sm border border-white/8 transition-colors"
+          className="px-5 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-400 hover:text-white font-medium text-sm border border-white/8 transition-colors cursor-pointer"
         >
           Batal
         </button>

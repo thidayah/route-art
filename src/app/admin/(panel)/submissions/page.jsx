@@ -286,7 +286,7 @@ export default function SubmissionsPage() {
                     <button
                       onClick={() => updateStatus(s.id, "approved")}
                       disabled={updating === s.id}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-500/10 hover:bg-green-500/20 text-green-400 text-xs font-medium border border-green-500/20 transition-colors disabled:opacity-50"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-500/10 hover:bg-green-500/20 text-green-400 text-xs font-medium border border-green-500/20 transition-colors disabled:opacity-50 cursor-pointer"
                     >
                       <Icon icon="mdi:check" className="w-3.5 h-3.5" />
                       Setujui
@@ -296,7 +296,7 @@ export default function SubmissionsPage() {
                     <button
                       onClick={() => updateStatus(s.id, "rejected")}
                       disabled={updating === s.id}
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-medium border border-red-500/20 transition-colors disabled:opacity-50"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-medium border border-red-500/20 transition-colors disabled:opacity-50 cursor-pointer"
                     >
                       <Icon icon="mdi:close" className="w-3.5 h-3.5" />
                       Tolak
