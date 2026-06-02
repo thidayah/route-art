@@ -12,6 +12,7 @@ const CATEGORIES = [
   { value: "bunga", label: "Bunga" },
   { value: "karakter", label: "Karakter" },
   { value: "objek", label: "Objek" },
+  { value: "race", label: "Race" },
   { value: "default", label: "Umum" },
 ];
 

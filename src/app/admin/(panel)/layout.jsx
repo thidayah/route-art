@@ -95,7 +95,7 @@ export default function AdminPanelLayout({ children }) {
         <div className="p-2.5 border-t border-white/6 shrink-0">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-neutral-500 hover:text-white hover:bg-white/4 transition-colors duration-150"
+            className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-neutral-500 hover:text-white hover:bg-white/4 transition-colors duration-150 cursor-pointer"
           >
             <Icon icon="mdi:logout-variant" className="w-4 h-4 shrink-0" />
             Keluar

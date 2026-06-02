@@ -127,7 +127,7 @@ export default function SubmissionsPage() {
           <button
             key={value}
             onClick={() => setFilter(value)}
-            className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
+            className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors duration-150 cursor-pointer ${
               filter === value
                 ? "bg-accent text-neutral-950"
                 : "text-neutral-400 hover:text-white"
