@@ -108,8 +108,7 @@ export default function SubmitRouteForm() {
               Rute Berhasil Dikirim!
             </h3>
             <p className="text-neutral-500 text-sm mb-6">
-              Rute kamu sedang dalam proses peninjauan. Kami akan menghubungi
-              kamu setelah rute disetujui.
+              Rute kamu sedang dalam proses peninjauan. Terima kasih sudah berkontribusi.
             </p>
             <button
               onClick={handleReset}
